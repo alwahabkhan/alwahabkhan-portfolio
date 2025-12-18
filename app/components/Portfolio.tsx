@@ -1,53 +1,86 @@
+'use client';
+
 import Image from 'next/image';
 import { Launch, Code as CodeIcon, GitHub } from '@mui/icons-material';
+import { useState } from 'react';
 
 export default function Portfolio() {
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
+
+  const handleImageError = (index: number) => {
+    setImageErrors((prev) => ({ ...prev, [index]: true }));
+  };
+
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management.',
+      title: 'Nike Project',
+      description: 'A modern e-commerce platform for Nike products with seamless shopping experience and payment integration.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      image: '/next.svg',
+      image: '/NIKE_-_WMoN.jpg',
       liveUrl: '#',
       githubUrl: '#',
     },
     {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'WebSocket'],
-      image: '/next.svg',
+      title: 'H&M E-Commerce',
+      description: 'Full-stack e-commerce solution for H&M with admin dashboard, inventory management, and user authentication.',
+      technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Express'],
+      image: '/H and M.jpg',
       liveUrl: '#',
       githubUrl: '#',
     },
     {
-      title: 'Social Media Dashboard',
-      description: 'Analytics dashboard for social media management with data visualization, scheduling, and performance tracking.',
-      technologies: ['React', 'D3.js', 'Express', 'MySQL'],
-      image: '/next.svg',
+      title: 'Zara Fashion Platform',
+      description: 'E-commerce platform for Zara with real-time inventory, product catalog, and secure checkout system.',
+      technologies: ['React', 'Node.js', 'MongoDB', 'Material UI'],
+      image: '/zara-forum6257.jpg',
       liveUrl: '#',
       githubUrl: '#',
     },
     {
-      title: 'Weather App',
-      description: 'Real-time weather application with location-based forecasts, interactive maps, and weather alerts.',
-      technologies: ['Next.js', 'OpenWeather API', 'Tailwind CSS'],
-      image: '/next.svg',
+      title: 'Adidas Store',
+      description: 'Modern online store for Adidas products with advanced filtering, search, and recommendation features.',
+      technologies: ['Next.js', 'GraphQL', 'PostgreSQL', 'Tailwind CSS'],
+      image: '/ADIDAS.jpg',
       liveUrl: '#',
       githubUrl: '#',
     },
     {
-      title: 'Blog Platform',
-      description: 'A modern blog platform with markdown support, SEO optimization, and content management system.',
-      technologies: ['Next.js', 'MDX', 'Prisma', 'PostgreSQL'],
-      image: '/next.svg',
+      title: 'Sephora Beauty Platform',
+      description: 'E-commerce platform for beauty products with product reviews, wishlist, and personalized recommendations.',
+      technologies: ['React', 'Express', 'MySQL', 'Redis'],
+      image: '/Sephora_2_1.jpg',
       liveUrl: '#',
       githubUrl: '#',
     },
     {
-      title: 'API Gateway',
-      description: 'Microservices API gateway with authentication, rate limiting, and request routing capabilities.',
-      technologies: ['Node.js', 'Express', 'Redis', 'Docker'],
-      image: '/next.svg',
+      title: 'Victoria\'s Secret',
+      description: 'Luxury fashion e-commerce platform with elegant UI, secure payments, and customer loyalty program.',
+      technologies: ['Next.js', 'Node.js', 'MongoDB', 'Stripe'],
+      image: '/Victoria_s_Secret_Westfield_Stratford_City.jpg',
+      liveUrl: '#',
+      githubUrl: '#',
+    },
+    {
+      title: 'Fashion Retail Platform',
+      description: 'Comprehensive retail management system with inventory tracking, sales analytics, and customer management.',
+      technologies: ['React', 'Express', 'PostgreSQL', 'AWS'],
+      image: '/_F1A0822.jpg',
+      liveUrl: '#',
+      githubUrl: '#',
+    },
+    {
+      title: 'Westfield Shopping Center',
+      description: 'Interactive platform for shopping center with store locator, events calendar, and directory features.',
+      technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Mapbox'],
+      image: '/WESTFIELD_CENTURY_CITY_TAYLOR_SWIFT_2.jpg',
+      liveUrl: '#',
+      githubUrl: '#',
+    },
+    {
+      title: 'Retail Management System',
+      description: 'Enterprise retail solution with POS integration, inventory management, and comprehensive reporting.',
+      technologies: ['React', 'Node.js', 'MySQL', 'Docker'],
+      image: '/DSC07901.jpg',
       liveUrl: '#',
       githubUrl: '#',
     },
@@ -73,12 +106,20 @@ export default function Portfolio() {
               className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2"
             >
               <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover opacity-80"
-                />
+                {imageErrors[index] ? (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
+                    <CodeIcon className="text-white text-6xl opacity-50" />
+                  </div>
+                ) : (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover opacity-80"
+                    onError={() => handleImageError(index)}
+                    unoptimized
+                  />
+                )}
               </div>
               
               <div className="p-6">

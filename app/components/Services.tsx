@@ -4,7 +4,8 @@ import {
   CloudQueue, 
   Code, 
   DesignServices,
-  Settings
+  Settings,
+  ArrowForward
 } from '@mui/icons-material';
 
 export default function Services() {
@@ -78,16 +79,21 @@ export default function Services() {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-12 text-white">
-            <h3 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
-            <p className="text-xl mb-6 text-blue-100">
-              Let's work together to bring your vision to life
+          <div className="bg-gradient-to-br from-blue-800 via-purple-800 to-indigo-900 rounded-xl p-12 md:p-16 text-white">
+            <h3 className="text-4xl md:text-5xl font-bold mb-6">
+              Do you have a Project Idea?<br />
+              Let's discuss your project!
+            </h3>
+            <p className="text-lg md:text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+              I'm always open to discussing new projects and creative ideas. Let's
+              connect and build something amazing together.
             </p>
             <a
               href="#contact"
-              className="inline-block px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg"
             >
-              Get In Touch
+              Let's work Together
+              <ArrowForward />
             </a>
           </div>
         </div>

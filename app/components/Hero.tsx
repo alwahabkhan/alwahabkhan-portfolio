@@ -50,7 +50,7 @@ export default function Hero() {
         </p>
         
         <p className="text-lg md:text-xl mb-8 text-blue-50 max-w-2xl mx-auto">
-          With 2+ years of experience creating robust and scalable web applications
+          With 3 years of experience creating robust and scalable web applications
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
