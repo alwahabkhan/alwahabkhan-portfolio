@@ -5,8 +5,8 @@ export default function Experience() {
     {
       title: 'MERN Stack Developer',
       company: 'E-Strats',
-      location: 'Remote',
-      period: 'June 2024 - Present',
+      location: 'Pwd, Islambad',
+      period: 'Jan 2024 - Present',
       description: [
         'Led the end-to-end development of scalable web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js)',
         'Built and integrated RESTful APIs for smooth frontend-backend communication',
@@ -21,8 +21,8 @@ export default function Experience() {
     {
       title: 'MERN Stack Developer',
       company: 'Abt IT Innovation Ltd Pvt',
-      location: 'Remote',
-      period: 'Jan 2024 - June 2024',
+      location: 'I8, Islambad',
+      period: 'Jan 2023 - Dec 2024',
       description: [
         'Developed dynamic UI components in React.js, implementing responsive layouts with Bootstrap and Tailwind CSS',
         'Created and connected MongoDB databases and implemented backend logic using Express.js and Node.js',
