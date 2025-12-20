@@ -1,8 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Launch, Code as CodeIcon, GitHub } from '@mui/icons-material';
 import { useState } from 'react';
+import { projects } from '@/app/data/projects';
 
 export default function Portfolio() {
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
@@ -11,159 +13,110 @@ export default function Portfolio() {
     setImageErrors((prev) => ({ ...prev, [index]: true }));
   };
 
-  const projects = [
-    {
-      title: 'Nike Project',
-      description: 'A modern e-commerce platform for Nike products with seamless shopping experience and payment integration.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      image: '/NIKE_-_WMoN.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      title: 'H&M E-Commerce',
-      description: 'Full-stack e-commerce solution for H&M with admin dashboard, inventory management, and user authentication.',
-      technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Express'],
-      image: '/H and M.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      title: 'Zara Fashion Platform',
-      description: 'E-commerce platform for Zara with real-time inventory, product catalog, and secure checkout system.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Material UI'],
-      image: '/zara-forum6257.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      title: 'Adidas Store',
-      description: 'Modern online store for Adidas products with advanced filtering, search, and recommendation features.',
-      technologies: ['Next.js', 'GraphQL', 'PostgreSQL', 'Tailwind CSS'],
-      image: '/ADIDAS.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      title: 'Sephora Beauty Platform',
-      description: 'E-commerce platform for beauty products with product reviews, wishlist, and personalized recommendations.',
-      technologies: ['React', 'Express', 'MySQL', 'Redis'],
-      image: '/Sephora_2_1.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      title: 'Victoria\'s Secret',
-      description: 'Luxury fashion e-commerce platform with elegant UI, secure payments, and customer loyalty program.',
-      technologies: ['Next.js', 'Node.js', 'MongoDB', 'Stripe'],
-      image: '/Victoria_s_Secret_Westfield_Stratford_City.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      title: 'Fashion Retail Platform',
-      description: 'Comprehensive retail management system with inventory tracking, sales analytics, and customer management.',
-      technologies: ['React', 'Express', 'PostgreSQL', 'AWS'],
-      image: '/_F1A0822.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      title: 'Westfield Shopping Center',
-      description: 'Interactive platform for shopping center with store locator, events calendar, and directory features.',
-      technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Mapbox'],
-      image: '/WESTFIELD_CENTURY_CITY_TAYLOR_SWIFT_2.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      title: 'Retail Management System',
-      description: 'Enterprise retail solution with POS integration, inventory management, and comprehensive reporting.',
-      technologies: ['React', 'Node.js', 'MySQL', 'Docker'],
-      image: '/DSC07901.jpg',
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-  ];
+  const featuredProjects = [
+    projects.find(p => p.slug === 'nexkey'),
+    projects.find(p => p.slug === 'smartfolio'),
+    projects.find(p => p.slug === 'zara-fashion')
+  ].filter(Boolean) as typeof projects;
+
+  const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => (
+    <Link
+      href={`/projects/${project.slug}`}
+      className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 group h-full flex flex-col cursor-pointer"
+    >
+      <div className="relative h-64 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 overflow-hidden">
+        {imageErrors[index] ? (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500">
+            <CodeIcon className="text-white text-6xl opacity-50" />
+          </div>
+        ) : (
+          <Image
+            src={project.images[0]}
+            alt={project.title}
+            fill
+            className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+            onError={() => handleImageError(index)}
+            unoptimized
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
+      
+      <div className="p-8 flex-1 flex flex-col">
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-6 text-base leading-relaxed flex-1">
+          {project.description}
+        </p>
+        
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.technologies.slice(0, 4).map((tech, techIndex) => (
+            <span
+              key={techIndex}
+              className="px-4 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-700 dark:text-blue-300 rounded-full text-xs font-semibold shadow-sm"
+            >
+              {tech}
+            </span>
+          ))}
+          {project.technologies.length > 4 && (
+            <span className="px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-xs font-semibold">
+              +{project.technologies.length - 4} more
+            </span>
+          )}
+        </div>
+        
+        <div className="flex space-x-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+            }}
+            className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium group/link"
+          >
+            <Launch className="mr-2 group-hover/link:rotate-12 transition-transform" />
+            <span>Live Demo</span>
+          </div>
+          <div
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
+            }}
+            className="flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors font-medium group/link"
+          >
+            <GitHub className="mr-2 group-hover/link:scale-110 transition-transform" />
+            <span>View Code</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
 
   return (
-    <section id="portfolio" className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section id="portfolio" className="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Portfolio
           </h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
             A collection of projects showcasing my skills and expertise
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2"
-            >
-              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600">
-                {imageErrors[index] ? (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
-                    <CodeIcon className="text-white text-6xl opacity-50" />
-                  </div>
-                ) : (
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover opacity-80"
-                    onError={() => handleImageError(index)}
-                    unoptimized
-                  />
-                )}
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex space-x-4">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
-                  >
-                    <Launch className="mr-1" />
-                    <span className="text-sm">Live</span>
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
-                  >
-                    <GitHub className="mr-1" />
-                    <span className="text-sm">Code</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Featured Projects */}
+        <div>
+          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+            Featured Projects
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((project, index) => (
+              <ProjectCard key={index} project={project} index={index} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

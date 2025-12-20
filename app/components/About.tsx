@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Code, DesignServices, CloudQueue } from '@mui/icons-material';
+import { Code, Storage, CloudQueue } from '@mui/icons-material';
 
 export default function About() {
   const features = [
@@ -9,9 +9,9 @@ export default function About() {
       description: 'Writing maintainable and scalable code following best practices',
     },
     {
-      icon: DesignServices,
-      title: 'UI/UX Design',
-      description: 'Creating beautiful and intuitive user interfaces',
+      icon: Storage,
+      title: 'Database Management',
+      description: 'Designing and optimizing database schemas for performance and scalability',
     },
     {
       icon: CloudQueue,
@@ -31,13 +31,14 @@ export default function About() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-xl">
+          <div className="flex justify-center">
+            <div className="relative w-64 md:w-80 aspect-[3/4] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/next.svg"
-                alt="About me"
+                src="/profile picture.jpeg"
+                alt="M Alwahab Ali Khan - Full Stack Developer"
                 fill
-                className="object-cover"
+                className="object-cover rounded-lg"
+                priority
               />
             </div>
           </div>

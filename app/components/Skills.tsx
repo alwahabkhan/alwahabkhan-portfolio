@@ -1,3 +1,6 @@
+'use client';
+
+import Image from 'next/image';
 import { 
   Code, 
   Storage, 
@@ -10,6 +13,39 @@ import {
 } from '@mui/icons-material';
 
 export default function Skills() {
+  const tools = [
+    { name: 'GitHub', image: '/GitHub.png' },
+    { name: 'VS Code', image: '/Visual Studio Code (VS Code).png' },
+    { name: 'AWS', image: '/AWS.png' },
+    { name: 'MongoDB', image: '/MongoDB.png' },
+    { name: 'PostgreSQL', image: '/PostgresSQL.png' },
+    { name: 'Vercel', image: '/Vercel.png' },
+    { name: 'Heroku', image: '/Heroku.png' },
+    { name: 'Postman', image: '/Postman.png' },
+    { name: 'Git', image: '/Git.png' },
+    { name: 'Node.js', image: '/Node.js.png' },
+    { name: 'Express', image: '/Express.png' },
+    { name: 'React', image: '/React.png' },
+    { name: 'Next.js', image: '/Next.js.png' },
+    { name: 'JavaScript', image: '/JavaScript.png' },
+    { name: 'TypeScript', image: '/TypeScript.png' },
+    { name: 'HTML5', image: '/HTML5.png' },
+    { name: 'CSS3', image: '/CSS3.png' },
+    { name: 'Tailwind CSS', image: '/Tailwind CSS.png' },
+    { name: 'Material UI', image: '/Material UI.png' },
+    { name: 'GraphQL', image: '/GraphQL.png' },
+    { name: 'Firebase', image: '/Firebase.png' },
+    { name: 'MySQL', image: '/MySQL.png' },
+    { name: 'Nest.js', image: '/Nest.js.png' },
+    { name: 'Vite', image: '/Vite.js.png' },
+    { name: 'NPM', image: '/NPM.png' },
+    { name: 'Linux', image: '/Linux.png' },
+    { name: 'Jira', image: '/Jira.png' },
+    { name: 'Slack', image: '/Slack.png' },
+  ];
+
+  // Duplicate tools for seamless infinite scroll
+  const duplicatedTools = [...tools, ...tools];
   const skillCategories = [
     {
       title: 'Frontend',
@@ -58,6 +94,40 @@ export default function Skills() {
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A comprehensive overview of the technologies and tools I work with
           </p>
+        </div>
+
+        {/* Tools Logos Carousel */}
+        <div className="mb-16 relative overflow-hidden">
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-800 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-800 to-transparent z-10 pointer-events-none"></div>
+
+          {/* Scrolling Carousel */}
+          <div className="overflow-hidden">
+            <div className="flex animate-scroll">
+              {duplicatedTools.map((tool, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 mx-6 flex flex-col items-center justify-center group"
+                  >
+                    <div className="w-32 h-32 bg-white dark:bg-gray-900 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-110 hover:shadow-lg p-4">
+                      <Image
+                        src={tool.image}
+                        alt={tool.name}
+                        width={80}
+                        height={80}
+                        className="object-contain transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
+                      {tool.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

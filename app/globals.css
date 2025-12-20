@@ -62,3 +62,40 @@ body {
 .animate-scroll:hover {
   animation-play-state: paused;
 }
+
+@keyframes scroll-vertical-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll-vertical-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-scroll-vertical-up {
+  animation: scroll-vertical-up 30s linear infinite;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.animate-scroll-vertical-down {
+  animation: scroll-vertical-down 30s linear infinite;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.animate-scroll-vertical-up:hover,
+.animate-scroll-vertical-down:hover {
+  animation-play-state: paused;
+}
