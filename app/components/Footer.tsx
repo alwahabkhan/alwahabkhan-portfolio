@@ -5,8 +5,8 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: Email, href: 'mailto:alwahabalikhan8@gmail.com', label: 'Email' },
-    { icon: LinkedIn, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: GitHub, href: 'https://github.com', label: 'GitHub' },
+    { icon: LinkedIn, href: 'https://www.linkedin.com/in/muhammad-alwahab-ali-khan-15452a23b/', label: 'LinkedIn' },
+    { icon: GitHub, href: 'https://github.com/alwahabkhan', label: 'GitHub' },
     { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
   ];
 
