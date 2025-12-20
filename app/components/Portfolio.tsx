@@ -16,7 +16,7 @@ export default function Portfolio() {
   const featuredProjects = [
     projects.find(p => p.slug === 'nexkey'),
     projects.find(p => p.slug === 'smartfolio'),
-    projects.find(p => p.slug === 'zara-fashion')
+    projects.find(p => p.slug === 'giga-mall')
   ].filter(Boolean) as typeof projects;
 
   const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => (
