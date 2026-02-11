@@ -3,12 +3,28 @@ import { Work, CalendarToday, LocationOn } from '@mui/icons-material';
 export default function Experience() {
   const experiences = [
     {
-      title: 'MERN Stack Developer',
+      title: 'Software Engineer',
+      company: 'Giga Group of Companies',
+      location: 'Islamabad',
+      period: 'Jan 2025 - Present',
+      description: [
+        'Building scalable web applications using Node.js, Nest.js, Next.js, MongoDB, and PostgreSQL',
+        'Developing and integrating RESTful APIs for frontend-backend communication',
+        'Containerizing applications with Docker and deploying via CI/CD pipelines to AWS and cloud platforms',
+        'Implementing serverless solutions with Azure Functions where required',
+        'Integrating Stripe for payment processing and subscription management',
+        'Working with AWS services for infrastructure and deployment',
+        'Ensuring code quality through version control, code reviews, and automated testing',
+        'Collaborating with cross-functional teams on project planning, debugging, and performance optimization',
+      ],
+    },
+    {
+      title: 'Full Stack Developer',
       company: 'E-Strats',
       location: 'Pwd, Islambad',
-      period: 'Jan 2024 - Present',
+      period: 'Jan 2022 - Dec 2024',
       description: [
-        'Led the end-to-end development of scalable web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js)',
+        'Led the end-to-end development of scalable web applications using the Full stack (MongoDB, Express.js, React.js, Node.js, Nest.js, Next.js)',
         'Built and integrated RESTful APIs for smooth frontend-backend communication',
         'Developed responsive UIs using React.js, Tailwind CSS, and Material UI, ensuring cross-device compatibility and accessibility',
         'Utilized Redux and Context API for efficient state management across complex components',
@@ -22,7 +38,7 @@ export default function Experience() {
       title: 'MERN Stack Developer',
       company: 'Abt IT Innovation Ltd Pvt',
       location: 'I8, Islambad',
-      period: 'Jan 2023 - Dec 2024',
+      period: 'Jan 2020 - Dec 2021',
       description: [
         'Developed dynamic UI components in React.js, implementing responsive layouts with Bootstrap and Tailwind CSS',
         'Created and connected MongoDB databases and implemented backend logic using Express.js and Node.js',
@@ -42,7 +58,7 @@ export default function Experience() {
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            3 years of professional experience building scalable web applications
+            6 years of professional experience building scalable web applications
           </p>
         </div>
 

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowBack, Launch, GitHub, CalendarToday, Business, Person, Code as CodeIcon } from '@mui/icons-material';
 import { useState } from 'react';
 import type { Project } from '@/app/data/projects';
+import { getTechLogo } from '@/app/utils/techLogos';
 import Footer from './Footer';
 
 interface ProjectDetailProps {
@@ -177,15 +178,33 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">Technologies & Skills</h2>
-          <div className="flex flex-wrap gap-4">
-            {project.technologies.map((tech, index) => (
-              <span
-                key={index}
-                className="px-6 py-3 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-700 dark:text-blue-300 rounded-full text-base font-semibold shadow-md hover:shadow-lg transition-all hover:scale-105"
-              >
-                {tech}
-              </span>
-            ))}
+          <div className="flex flex-wrap gap-4 items-center">
+            {project.technologies.map((tech, index) => {
+              const logoSrc = getTechLogo(tech);
+              return logoSrc ? (
+                <span
+                  key={index}
+                  className="inline-flex items-center justify-center w-14 h-14 p-2 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform"
+                  title={tech}
+                >
+                  <Image
+                    src={logoSrc}
+                    alt={tech}
+                    width={36}
+                    height={36}
+                    className="object-contain"
+                    unoptimized
+                  />
+                </span>
+              ) : (
+                <span
+                  key={index}
+                  className="px-6 py-3 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-700 dark:text-blue-300 rounded-full text-base font-semibold shadow-md hover:shadow-lg transition-all hover:scale-105"
+                >
+                  {tech}
+                </span>
+              );
+            })}
           </div>
         </div>
       </section>

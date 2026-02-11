@@ -17,7 +17,7 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Portfolio</h3>
             <p className="text-gray-400">
-              M Alwahab Ali Khan - Full Stack Developer (MERN Stack) with 3 years of experience building modern web applications.
+              M Alwahab Ali Khan - Full Stack Developer (MERN Stack) with 6 years of experience building modern web applications.
             </p>
           </div>
           

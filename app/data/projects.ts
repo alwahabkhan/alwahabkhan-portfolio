@@ -27,7 +27,7 @@ export const projects: Project[] = [
     description: 'A complete IoT-based smart lock management system that allows users to lock and unlock doors through both mobile applications and a web portal with advanced business logic for secure access control.',
     fullDescription: 'NexKey is a comprehensive IoT-based smart lock management system (US-Based Project) that enables users to control smart locks through mobile applications and web portals. The system features advanced business logic including automatic unlocking during business hours, blackout periods for restricted access, and multi-level access control (Owner, Admin, User). The platform includes grouping functionality for managing locks via groups with role-based permissions, an internal portal for key sharing and customer management, and a user web portal with analytics and personalized lock control features.',
     technologies: ['React.js', 'Material UI', 'Redux Toolkit', 'Node.js', 'Express.js', 'Parse Server', 'Java SpringBoot', 'MongoDB', 'Heroku', 'AWS EC2'],
-    images: ['/Nexkey PIcture.png', '/nexkey picture 2.png', '/nexkey picture 3.png'],
+    images: ['/Nexkey/Nexkey PIcture.png', '/Nexkey/nexkey picture 2.png', '/Nexkey/nexkey picture 3.png'],
     liveUrl: 'https://portal.nexkey.com/',
     githubUrl: '#',
     company: 'US-Based Project',
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     description: 'A full-featured web application for Giga Mall delivering a seamless digital experience for visitors, brands, and management with centralized mall information and role-based admin system.',
     fullDescription: 'Giga Mall Web Application is a comprehensive full-stack platform designed to centralize mall information, improve customer navigation, and streamline content management. The platform features comprehensive stores and dine listings with detailed information, dynamic events and offers management sections, and a dedicated area for showcasing new brands and upcoming projects. It includes an interactive internal mall map with floor-based store listings and in-mall navigation support, an entertainment and services section, and a smart parking system with automated parking module displaying available slots and reservations. The application features a powerful admin portal with role-based access control including Store Owner, Admin, and Super Owner levels for managing all content including stores, dine outlets, events, and offers.',
     technologies: ['Next.js', 'Material UI', 'NestJS', 'PostgreSQL', 'Prisma', 'Hostinger KVM8'],
-    images: ['/giga 1.png', '/giga 2.png', '/giga 3.png'],
+    images: ['/Giga/giga 1.png', '/Giga/giga 2.png', '/Giga/giga 3.png'],
     liveUrl: 'https://the-giga-mall-web.vercel.app/',
     githubUrl: 'https://github.com/Giga-Group/The-Giga-Mall-Web',
     company: 'Giga Mall',
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     description: 'An AI-Powered Web Application with AI-generated cover letters, customizable resume builder, and portfolio generator features.',
     fullDescription: 'SmartFolio is an innovative AI-powered web application that revolutionizes job application processes. The platform features an AI-generated cover letter system with an interactive questionnaire that collects user information to create personalized cover letters. It includes resume and job description matching that analyzes compatibility before generating cover letters, ensuring relevance and quality through conditional generation. The application also offers a customizable resume builder with multiple templates and multilingual support, allowing users to translate resumes into different languages. Additionally, it includes a portfolio generator for showcasing projects with detailed descriptions and shareable links. The application implements robust security with Http-only cookies for authentication, protected routes for sensitive operations, and comprehensive error handling throughout.',
     technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'AI/ML', 'Material UI', 'JWT', 'MERN Stack'],
-    images: ['/Smartfolio 1.png', '/Smartfolio 2.png', '/Smartfolio 3.png'],
+    images: ['/Smartfolio/Smartfolio 1.png', '/Smartfolio/Smartfolio 2.png', '/Smartfolio/Smartfolio 3.png'],
     liveUrl: '#',
     githubUrl: 'https://github.com/alwahabkhan/smartfolio-mern',
     company: 'Personal Project',
@@ -187,6 +187,139 @@ export const projects: Project[] = [
       'Developed shareable portfolio links for easy access and sharing',
       'Created robust error handling system for enhanced user experience',
       'Successfully deployed full-stack MERN application'
+    ]
+  },
+  {
+    id: '5',
+    slug: 'cakeshares',
+    title: 'CakeShares – Profit Sharing System',
+    description: 'A full-stack FinTech web application that enables multiple users to collectively invest in assets and automatically receive profits based on their individual contributions, with transparent and automated profit distribution.',
+    fullDescription: 'CakeShare is a full-stack FinTech web application that enables multiple users to collectively invest in assets and automatically receive profits based on their individual contributions. The platform ensures transparent, fair, and automated profit distribution as asset values grow, eliminating manual calculations and disputes. Users can create or join investment pools, monitor asset performance in real time, and track their earnings through an integrated digital wallet. The system supports role-based access (Buyer/User, Seller/Admin, Super Admin), Stripe integration for deposits and payouts, and is built with a microservices architecture on AWS ECS for high availability and scalability.',
+    technologies: ['React.js', 'Redux Toolkit', 'Node.js', 'Express.js', 'MongoDB', 'Stripe', 'AWS ECS', 'Microservices'],
+    images: ['/CakeShares/cake3.png', '/CakeShares/cake1.png', '/CakeShares/cake2.png'],
+    liveUrl: '#',
+    githubUrl: '#',
+    company: 'FinTech / Investment Management',
+    role: 'Full Stack Developer (Backend Primary)',
+    timeline: {
+      startDate: '2024',
+      endDate: 'Present',
+      duration: 'Ongoing'
+    },
+    responsibilities: [
+      'Designed and developed scalable REST APIs using Node.js and Express',
+      'Implemented microservices architecture for modular and maintainable services',
+      'Integrated Stripe for secure payment processing and wallet transactions',
+      'Built automated profit calculation and distribution logic',
+      'Managed authentication and role-based access control (Buyer, Seller, Super Admin)',
+      'Deployed and managed backend services on AWS ECS',
+      'Implemented global state management with Redux Toolkit on the frontend',
+      'Integrated backend APIs for real-time investment and wallet updates'
+    ],
+    achievements: [
+      'Strengthened expertise in building scalable FinTech applications',
+      'Delivered microservices-based backend for maintainability and scale',
+      'Implemented secure payment flows and automated financial logic',
+      'Gained hands-on experience in production-level full-stack development on AWS'
+    ]
+  },
+  {
+    id: '6',
+    slug: 'eliya-residential-portal',
+    title: 'Eliya Residential Portal',
+    description: 'A web-based platform that streamlines buying and selling of residential properties, with role-based access for Admin, Agent, Seller, and Buyer—supporting property listings, inquiries, mortgage estimates, and analytics.',
+    fullDescription: 'The Eliya Residential Portal is a web-based platform designed to streamline the process of buying and selling residential properties. It facilitates seamless interactions between buyers, sellers, and agents while providing admins with comprehensive oversight and analytics. The platform supports four distinct roles: Admin (full system monitoring and management), Agent (intermediary between buyers and sellers), Seller (list properties via dashboard), and Buyer (browse and search properties, submit inquiries, use mortgage calculator). Built with Next.js for the frontend, Node.js and Express.js for the backend, and MySQL for storing users, properties, messages, analytics, and blog content. Features include form validation for buyer inquiries, property search with filtering across cities, real-time analytics for admin, and secure authentication with role-based dashboards and permissions.',
+    technologies: ['Next.js', 'Node.js', 'Express.js', 'MySQL'],
+    images: ['/Eliya/Eliya1.jpeg', '/Eliya/Eliya2.jpeg', '/Eliya/Eliya3.jpeg'],
+    liveUrl: '#',
+    githubUrl: '#',
+    company: 'Eliya',
+    role: 'Full Stack Developer',
+    timeline: {
+      startDate: '2024',
+      endDate: 'Present',
+      duration: 'Ongoing'
+    },
+    responsibilities: [
+      'Built frontend with Next.js for server-side rendering, responsive UI, and routing',
+      'Developed backend APIs using Node.js and Express.js with authentication and role-based access control',
+      'Designed and implemented MySQL database for users, properties, messages, analytics, and blog content',
+      'Implemented Admin dashboard: platform monitoring, blog/project uploads, analytics, message management',
+      'Implemented Agent workflow: review buyer inquiries, contact buyers, bridge communication with sellers',
+      'Implemented Seller dashboard: upload and manage property listings',
+      'Implemented Buyer features: inquiry form (name, phone, email, budget, property type), property search and filters by city, mortgage calculator',
+      'Added form validation, secure session management, and tailored dashboards per role'
+    ],
+    achievements: [
+      'Delivered a structured and secure environment for property transactions',
+      'Enabled buyers to find properties and sellers to list them with agent facilitation',
+      'Provided admins with analytics and oversight for business decisions'
+    ]
+  },
+  {
+    id: '7',
+    slug: 'intersight',
+    title: 'Intersight – Revenue Intelligence System',
+    description: 'An AI-powered revenue intelligence platform that helps B2B sales teams close more deals by analyzing CRM data, emails, meetings, and activities to learn what drives wins and apply those insights to active opportunities.',
+    fullDescription: 'Intersight AI is an AI-powered revenue intelligence platform that helps B2B sales teams close more deals with confidence. It analyzes CRM data, emails, meetings, and sales activities to learn what drives successful deals and applies those insights to active opportunities—acting like a smart sales assistant that studies your best wins and guides your team to repeat that success. The platform addresses scattered sales data, missed deal risks, incomplete CRM data, manual update overhead, and inconsistent processes. It integrates with CRMs, email, calendars, and meeting platforms to continuously analyze historical and live deal data and provide real-time guidance. Core features include deal prioritization and insights (high-priority and at-risk deals with next steps), smart CRM suggestions (auto-suggested field values and frameworks like MEDDICC), auto CRM updates after meetings, AI meeting bot (record, transcribe, summarize, follow-ups), sales playbooks (stage and persona-based guidance), risk detection with mitigation strategies, and Intersight Copilot—a chat-based AI assistant for instant deal insights. Built for B2B companies and scaling sales teams (5+ reps) with historical deal data. Tech stack: Next.js (frontend), Nest.js (backend), PostgreSQL (database), Python and Azure Functions (AI and data processing), with integrations for Salesforce, HubSpot, email, calendar, and meeting tools.',
+    technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'Python', 'Azure Functions', 'Salesforce', 'HubSpot'],
+    images: ['/intersight/intersight1.png', '/intersight/intersight2.png', '/intersight/intersight3.png', '/intersight/intersight4.png', '/intersight/intersight5.png'],
+    liveUrl: '#',
+    githubUrl: '#',
+    company: 'B2B Revenue Intelligence',
+    role: 'Full Stack Development',
+    timeline: {
+      startDate: '2024',
+      endDate: 'Present',
+      duration: 'Ongoing'
+    },
+    responsibilities: [
+      'Built frontend with Next.js for the revenue intelligence platform',
+      'Developed backend services with Nest.js and PostgreSQL',
+      'Connected CRM, email, calendar, and meeting integrations (e.g. Salesforce, HubSpot)',
+      'Implemented deal prioritization, at-risk detection, and next-step insights',
+      'Contributed to smart CRM suggestions, auto-updates, and meeting bot features',
+      'Supported sales playbooks, risk detection, and Copilot-style chat assistant'
+    ],
+    achievements: [
+      'Delivered an AI-powered platform that reduces admin work and improves forecasting',
+      'Enabled consistent execution and cleaner CRM data for RevOps',
+      'Built for B2B sales teams with historical deal data and scaling needs'
+    ]
+  },
+  {
+    id: '8',
+    slug: 'motive',
+    title: 'Motive – Fleet Management System',
+    description: 'An AI-enabled vehicle fleet management platform for logistics, transportation, and field service businesses—providing visibility and control over vehicles, drivers, safety, compliance, and maintenance from a single system.',
+    fullDescription: 'Motive is a comprehensive, AI-enabled vehicle fleet management platform built for logistics, transportation, and field service businesses. It acts as a central command center for fleet operations, providing complete visibility and control over vehicles, drivers, safety, compliance, and maintenance from a single unified system. The platform addresses lack of real-time visibility, high fuel and operational costs, unsafe driving behavior, manual compliance tracking, unexpected breakdowns, and disconnected data. It continuously collects data from vehicles and drivers via GPS, telematics, and activity tracking, then processes it in real time for dashboards, alerts, and reports. Core features include real-time fleet tracking (live GPS, route playback, geofencing), driver safety and behavior monitoring (speeding, harsh braking, safety scorecards), vehicle telematics and diagnostics (engine health, fuel, mileage, fault codes), fleet maintenance management (automated schedules and alerts), compliance and digital logs, custom reports and analytics, and mobile-friendly access for drivers and managers. Ideal for logistics and transportation companies, delivery fleets, construction and field service businesses, and organizations with small to large vehicle fleets. Tech stack: Next.js (frontend), Nest.js (backend), PostgreSQL (database).',
+    technologies: ['Next.js', 'NestJS', 'PostgreSQL'],
+    images: ['/Motive/motive1.png', '/Motive/motive2.png', '/Motive/motive3.png', '/Motive/motive4.png', '/Motive/motive5.png'],
+    liveUrl: '#',
+    githubUrl: '#',
+    company: 'Fleet Management / Logistics',
+    role: 'Full Stack Developer',
+    timeline: {
+      startDate: '2024',
+      endDate: 'Present',
+      duration: 'Ongoing'
+    },
+    responsibilities: [
+      'Built frontend with Next.js for the fleet management platform',
+      'Developed backend services with Nest.js and PostgreSQL',
+      'Implemented real-time fleet tracking with GPS, route playback, and geofencing',
+      'Integrated driver safety and behavior monitoring with scorecards and alerts',
+      'Built vehicle telematics and diagnostics (engine health, fuel, mileage, fault codes)',
+      'Implemented fleet maintenance management with automated schedules and service alerts',
+      'Developed compliance and digital logging for regulatory reporting',
+      'Created dashboards and analytics for utilization, driver performance, and fuel efficiency',
+      'Delivered mobile-optimized interfaces for drivers and managers'
+    ],
+    achievements: [
+      'Delivered a unified platform for complete fleet visibility and control',
+      'Improved driver safety and regulatory compliance',
+      'Enabled reduced fuel and maintenance costs through automation',
+      'Built scalable solution for logistics and field service fleets'
     ]
   }
 ];

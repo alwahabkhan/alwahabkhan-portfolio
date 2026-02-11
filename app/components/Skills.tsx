@@ -56,7 +56,7 @@ export default function Skills() {
     {
       title: 'Backend',
       icon: Storage,
-      skills: ['Node Js', 'Express Js', 'REST APIs', 'GraphQL', 'MongoDB', 'MySQL', 'PostgreSQL', 'FireBase'],
+      skills: ['Node Js', 'Express Js', 'Nest Js', 'REST APIs', 'GraphQL', 'MongoDB', 'MySQL', 'PostgreSQL'],
       color: 'green',
     },
     {

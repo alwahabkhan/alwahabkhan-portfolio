@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Launch, Code as CodeIcon, GitHub } from '@mui/icons-material';
 import { useState } from 'react';
 import { projects } from '@/app/data/projects';
+import { getTechLogo } from '@/app/utils/techLogos';
 
 export default function Portfolio() {
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
@@ -14,9 +15,13 @@ export default function Portfolio() {
   };
 
   const featuredProjects = [
+    projects.find(p => p.slug === 'motive'),
+    projects.find(p => p.slug === 'intersight'),
     projects.find(p => p.slug === 'nexkey'),
-    projects.find(p => p.slug === 'smartfolio'),
-    projects.find(p => p.slug === 'giga-mall')
+    projects.find(p => p.slug === 'cakeshares'),
+    projects.find(p => p.slug === 'giga-mall'),
+    projects.find(p => p.slug === 'eliya-residential-portal'),
+    projects.find(p => p.slug === 'smartfolio')
   ].filter(Boolean) as typeof projects;
 
   const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => (
@@ -50,18 +55,36 @@ export default function Portfolio() {
           {project.description}
         </p>
         
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.technologies.slice(0, 4).map((tech, techIndex) => (
-            <span
-              key={techIndex}
-              className="px-4 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-700 dark:text-blue-300 rounded-full text-xs font-semibold shadow-sm"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.technologies.length > 4 && (
+        <div className="flex flex-wrap gap-2 mb-6 items-center">
+          {project.technologies.slice(0, 6).map((tech, techIndex) => {
+            const logoSrc = getTechLogo(tech);
+            return logoSrc ? (
+              <span
+                key={techIndex}
+                className="inline-flex items-center justify-center w-10 h-10 p-1.5 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 hover:scale-110 transition-transform"
+                title={tech}
+              >
+                <Image
+                  src={logoSrc}
+                  alt={tech}
+                  width={28}
+                  height={28}
+                  className="object-contain"
+                  unoptimized
+                />
+              </span>
+            ) : (
+              <span
+                key={techIndex}
+                className="px-4 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-700 dark:text-blue-300 rounded-full text-xs font-semibold shadow-sm"
+              >
+                {tech}
+              </span>
+            );
+          })}
+          {project.technologies.length > 6 && (
             <span className="px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-xs font-semibold">
-              +{project.technologies.length - 4} more
+              +{project.technologies.length - 6} more
             </span>
           )}
         </div>
