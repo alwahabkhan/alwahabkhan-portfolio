@@ -112,20 +112,20 @@ export default function Hero() {
           </div>
 
           {/* Text Content - Shown second on mobile, first on desktop */}
-          <div className="text-center md:text-left order-2 md:order-1 overflow-hidden">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-white animate-slide-in-from-left">
+          <div className="text-center md:text-left order-2 md:order-1">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-white animate-morph-in">
               M Alwahab Ali Khan
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-blue-100 animate-slide-in-from-left-delay-1">
+            <p className="text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-blue-100 animate-morph-in-delay-1">
               Full Stack Developer
             </p>
             
-            <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-blue-50 leading-relaxed animate-slide-in-from-left-delay-2">
+            <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-blue-50 leading-relaxed animate-morph-in-delay-2">
               With 6 years of experience creating robust and scalable web applications
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start animate-slide-in-from-left-delay-3">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start animate-morph-in-delay-3">
               <button
                 onClick={() => scrollToSection('portfolio')}
                 className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg text-sm sm:text-base"

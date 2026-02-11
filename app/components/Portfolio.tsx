@@ -1,14 +1,23 @@
 'use client';
 
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Launch, Code as CodeIcon, GitHub } from '@mui/icons-material';
-import { useState } from 'react';
 import { projects } from '@/app/data/projects';
 import { getTechLogo } from '@/app/utils/techLogos';
 
+const BATCH_SIZE = 3;
+const BOTTOM_MORPH_DELAY_CLASSES = [
+  'animate-morph-in-from-bottom-delay-1',
+  'animate-morph-in-from-bottom-delay-2',
+  'animate-morph-in-from-bottom-delay-3',
+] as const;
+
 export default function Portfolio() {
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
+  const batchStartRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [visibleBatches, setVisibleBatches] = useState<Set<number>>(new Set());
 
   const handleImageError = (index: number) => {
     setImageErrors((prev) => ({ ...prev, [index]: true }));
@@ -23,6 +32,30 @@ export default function Portfolio() {
     projects.find(p => p.slug === 'eliya-residential-portal'),
     projects.find(p => p.slug === 'smartfolio')
   ].filter(Boolean) as typeof projects;
+
+  useEffect(() => {
+    const batchCount = Math.ceil(featuredProjects.length / BATCH_SIZE);
+    const refs = batchStartRefs.current.filter((el): el is HTMLDivElement => el != null).slice(0, batchCount);
+    if (refs.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const batchIndex = parseInt(entry.target.getAttribute('data-batch-index') ?? '', 10);
+          if (Number.isNaN(batchIndex)) return;
+          setVisibleBatches((prev) => {
+            if (prev.has(batchIndex)) return prev;
+            return new Set([...prev, batchIndex]);
+          });
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    refs.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [featuredProjects.length]);
 
   const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => (
     <Link
@@ -136,9 +169,22 @@ export default function Portfolio() {
             Featured Projects
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard key={index} project={project} index={index} />
-            ))}
+            {featuredProjects.map((project, index) => {
+              const batchIndex = Math.floor(index / BATCH_SIZE);
+              const isBatchStart = index % BATCH_SIZE === 0;
+              const isVisible = visibleBatches.has(batchIndex);
+              const morphClass = isVisible ? BOTTOM_MORPH_DELAY_CLASSES[index % BATCH_SIZE] : 'opacity-0';
+              return (
+                <div
+                  key={index}
+                  ref={isBatchStart ? (el) => { batchStartRefs.current[batchIndex] = el; } : undefined}
+                  data-batch-index={isBatchStart ? batchIndex : undefined}
+                  className={`transition-opacity duration-300 ${morphClass}`}
+                >
+                  <ProjectCard project={project} index={index} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

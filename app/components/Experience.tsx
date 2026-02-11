@@ -1,9 +1,15 @@
+'use client';
+
+import { useRef, useState, useEffect } from 'react';
 import { Work, CalendarToday, LocationOn } from '@mui/icons-material';
 
 export default function Experience() {
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
+
   const experiences = [
     {
-      title: 'Software Engineer',
+      title: 'Sr. Full Stack Developer',
       company: 'Giga Group of Companies',
       location: 'Islamabad',
       period: 'Jan 2025 - Present',
@@ -49,6 +55,34 @@ export default function Experience() {
     },
   ];
 
+  useEffect(() => {
+    const refs = cardRefs.current.filter((el): el is HTMLDivElement => el != null);
+    if (refs.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const index = entry.target.getAttribute('data-experience-index');
+          if (index === null) return;
+          const i = parseInt(index, 10);
+          setVisibleCards((prev) => {
+            const next = [...prev];
+            if (!next[i]) {
+              next[i] = true;
+              return next;
+            }
+            return prev;
+          });
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    refs.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [experiences.length]);
+
   return (
     <section id="experience" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
@@ -68,7 +102,14 @@ export default function Experience() {
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700 hidden md:block"></div>
 
             {experiences.map((exp, index) => (
-              <div key={index} className="relative mb-12 md:mb-16">
+              <div
+                key={index}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                data-experience-index={index}
+                className="relative mb-12 md:mb-16"
+              >
                 <div className="md:flex items-start">
                   {/* Timeline Dot */}
                   <div className="hidden md:flex absolute left-0 w-16 h-16 items-center justify-center">
@@ -76,7 +117,11 @@ export default function Experience() {
                   </div>
 
                   {/* Content */}
-                  <div className="md:ml-24 bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                  <div
+                    className={`md:ml-24 bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow ${
+                      visibleCards[index] ? 'animate-experience-morph-from-left' : 'opacity-0'
+                    }`}
+                  >
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">

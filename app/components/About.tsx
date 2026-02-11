@@ -1,7 +1,33 @@
+'use client';
+
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Code, Storage, CloudQueue } from '@mui/icons-material';
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTriggeredRef = useRef(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasTriggeredRef.current) {
+          hasTriggeredRef.current = true;
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   const features = [
     {
       icon: Code,
@@ -21,9 +47,13 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
+    <section ref={sectionRef} id="about" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div
+          className={`text-center mb-16 transition-opacity duration-300 ${
+            hasAnimated ? 'animate-morph-in-center' : 'opacity-0'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             About Me
           </h2>
@@ -31,7 +61,11 @@ export default function About() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="flex justify-center">
+          <div
+            className={`flex justify-center transition-opacity duration-300 ${
+              hasAnimated ? 'animate-morph-in-from-left' : 'opacity-0'
+            }`}
+          >
             <div className="relative w-64 md:w-80 aspect-[3/4] rounded-lg overflow-hidden shadow-xl">
               <Image
                 src="/profile picture.jpeg"
@@ -43,7 +77,11 @@ export default function About() {
             </div>
           </div>
 
-          <div>
+          <div
+            className={`transition-opacity duration-300 ${
+              hasAnimated ? 'animate-morph-in-from-right' : 'opacity-0'
+            }`}
+          >
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               M Alwahab Ali Khan
             </h3>

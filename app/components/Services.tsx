@@ -1,3 +1,6 @@
+'use client';
+
+import { useRef, useState, useEffect } from 'react';
 import { 
   Web, 
   Smartphone, 
@@ -8,7 +11,39 @@ import {
   ArrowForward
 } from '@mui/icons-material';
 
+const CARD_DELAY_CLASSES = [
+  'animate-morph-in-from-bottom-delay-1',
+  'animate-morph-in-from-bottom-delay-2',
+  'animate-morph-in-from-bottom-delay-3',
+  'animate-morph-in-from-bottom-delay-4',
+  'animate-morph-in-from-bottom-delay-5',
+  'animate-morph-in-from-bottom-delay-6',
+] as const;
+
 export default function Services() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTriggeredRef = useRef(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasTriggeredRef.current) {
+          hasTriggeredRef.current = true;
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   const services = [
     {
       icon: Web,
@@ -43,7 +78,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white dark:bg-gray-900">
+    <section ref={sectionRef} id="services" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -61,7 +96,9 @@ export default function Services() {
             return (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 hover:shadow-xl transition-all transform hover:-translate-y-2"
+                className={`bg-gray-50 dark:bg-gray-800 rounded-xl p-8 hover:shadow-xl transition-all transform hover:-translate-y-2 ${
+                  hasAnimated ? CARD_DELAY_CLASSES[index] : 'opacity-0'
+                }`}
               >
                 <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-6">
                   <Icon className="text-3xl text-blue-600 dark:text-blue-400" />
@@ -77,8 +114,12 @@ export default function Services() {
           })}
         </div>
 
-        {/* Call to Action */}
-        <div className="mt-16 text-center">
+        {/* Call to Action - Do you have a Project Idea? */}
+        <div
+          className={`mt-16 text-center transition-opacity duration-300 ${
+            hasAnimated ? 'animate-morph-in-from-bottom-cta' : 'opacity-0'
+          }`}
+        >
           <div className="bg-gradient-to-br from-blue-800 via-purple-800 to-indigo-900 rounded-xl p-12 md:p-16 text-white">
             <h3 className="text-4xl md:text-5xl font-bold mb-6">
               Do you have a Project Idea?<br />

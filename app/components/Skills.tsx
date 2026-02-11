@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { 
   Code, 
@@ -13,6 +14,29 @@ import {
 } from '@mui/icons-material';
 
 export default function Skills() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTriggeredRef = useRef(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasTriggeredRef.current) {
+          hasTriggeredRef.current = true;
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   const tools = [
     { name: 'GitHub', image: '/GitHub.png' },
     { name: 'VS Code', image: '/Visual Studio Code (VS Code).png' },
@@ -84,7 +108,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section ref={sectionRef} id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -133,10 +157,18 @@ export default function Skills() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
+            const delayClass = [
+              'animate-morph-in-from-bottom-delay-1',
+              'animate-morph-in-from-bottom-delay-2',
+              'animate-morph-in-from-bottom-delay-3',
+              'animate-morph-in-from-bottom-delay-4',
+            ][index];
             return (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                className={`bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow ${
+                  hasAnimated ? delayClass : 'opacity-0'
+                }`}
               >
                 <div className={`w-16 h-16 ${getColorClasses(category.color)} rounded-lg flex items-center justify-center mb-4`}>
                   <Icon className="text-2xl" />
@@ -160,8 +192,12 @@ export default function Skills() {
           })}
         </div>
 
-        {/* Additional Skills Section */}
-        <div className="mt-12 bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+        {/* Additional Skills Section - Core Competencies */}
+        <div
+          className={`mt-12 bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg transition-opacity duration-300 ${
+            hasAnimated ? 'animate-morph-in-from-bottom-delay-5' : 'opacity-0'
+          }`}
+        >
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
             Core Competencies
           </h3>

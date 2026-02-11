@@ -1,6 +1,32 @@
+'use client';
+
+import { useRef, useState, useEffect } from 'react';
 import { Email, LinkedIn, GitHub, Twitter } from '@mui/icons-material';
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+  const hasTriggeredRef = useRef(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasTriggeredRef.current) {
+          hasTriggeredRef.current = true;
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -11,8 +37,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-6">
+    <footer ref={footerRef} className="bg-gray-900 text-white py-12">
+      <div
+        className={`container mx-auto px-6 transition-opacity duration-300 ${
+          hasAnimated ? 'animate-morph-in-from-bottom' : 'opacity-0'
+        }`}
+      >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">Portfolio</h3>
