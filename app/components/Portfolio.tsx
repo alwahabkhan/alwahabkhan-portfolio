@@ -27,6 +27,7 @@ export default function Portfolio() {
     projects.find(p => p.slug === 'motive'),
     projects.find(p => p.slug === 'intersight'),
     projects.find(p => p.slug === 'nexkey'),
+    projects.find(p => p.slug === 'maidslife'),
     projects.find(p => p.slug === 'cakeshares'),
     projects.find(p => p.slug === 'giga-mall'),
     projects.find(p => p.slug === 'eliya-residential-portal'),

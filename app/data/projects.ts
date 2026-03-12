@@ -321,6 +321,42 @@ export const projects: Project[] = [
       'Enabled reduced fuel and maintenance costs through automation',
       'Built scalable solution for logistics and field service fleets'
     ]
+  },
+  {
+    id: '9',
+    slug: 'maidslife',
+    title: 'Maidslife – On-Demand Home Services Platform',
+    description: 'A scalable SaaS platform connecting customers with service professionals for cleaning and household services—featuring customer booking, admin dashboard, Google Places address autocomplete, coupons, and order tracking.',
+    fullDescription: 'Maidslife is a complete on-demand home services platform built for a client who wanted to launch a scalable SaaS solution connecting customers with service professionals. The platform includes a customer-facing website where users can browse services, book appointments, enter their address using Google Places autocomplete, apply coupons, and track orders. The powerful admin dashboard gives administrators full control over operations: managing users, orders, professionals, and coupons, plus viewing sales and order analytics. The platform was built using React, Node.js, Express, and MongoDB, with secure authentication, online payment integration, and automated email notifications. The final product is a fully functional service-booking SaaS platform designed for scalability and smooth user experience.',
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Google Places API', 'Payment Integration', 'Email Notifications'],
+    images: ['/Maidslife/maid1.png', '/Maidslife/maid2.png', '/Maidslife/maid3.png', '/Maidslife/maid4.png', '/Maidslife/maid5.png', '/Maidslife/maid6.png'],
+    liveUrl: '#',
+    githubUrl: '#',
+    company: 'Client Project',
+    role: 'Full Stack Developer',
+    timeline: {
+      startDate: '2024',
+      endDate: 'Present',
+      duration: 'Ongoing'
+    },
+    responsibilities: [
+      'Developed customer-facing website for browsing and booking cleaning and household services',
+      'Built admin dashboard for managing users, orders, professionals, and coupons',
+      'Implemented Google Places autocomplete for address entry',
+      'Integrated coupon system for discounts and promotions',
+      'Built order tracking and management for customers and admins',
+      'Implemented secure authentication and role-based access',
+      'Integrated online payment processing',
+      'Set up automated email notifications for bookings and updates',
+      'Designed and developed backend API with Node.js, Express, and MongoDB',
+      'Created sales and order analytics for administrators'
+    ],
+    achievements: [
+      'Delivered a fully functional service-booking SaaS platform',
+      'Built scalable architecture for growth and multiple service professionals',
+      'Provided administrators with full operational control and analytics',
+      'Enabled smooth user experience from booking to order tracking'
+    ]
   }
 ];
 
