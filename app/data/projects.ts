@@ -33,8 +33,8 @@ export const projects: Project[] = [
     company: 'US-Based Project',
     role: 'Backend Developer (Primary) / Frontend Developer',
     timeline: {
-      startDate: 'June 2024',
-      endDate: 'December 2025',
+      startDate: 'June 2023',
+      endDate: 'December 2024',
       duration: '18 months'
     },
     responsibilities: [
