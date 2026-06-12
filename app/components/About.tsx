@@ -86,7 +86,7 @@ export default function About() {
               M Alwahab Ali Khan
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-              I am a full-stack developer (MERN stack) with 6 years of experience creating robust and scalable web applications. 
+              I am a full-stack developer (MERN stack) with 4 years of experience creating robust and scalable web applications. 
               Proficient in building efficient backend systems with Node.js and Express while crafting dynamic and responsive 
               frontends using React Js.
             </p>

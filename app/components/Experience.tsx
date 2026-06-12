@@ -92,7 +92,7 @@ export default function Experience() {
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            6 years of professional experience building scalable web applications
+            4 years of professional experience building scalable web applications
           </p>
         </div>
 

@@ -122,7 +122,7 @@ export default function Hero() {
             </p>
             
             <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-blue-50 leading-relaxed animate-morph-in-delay-2">
-              With 6 years of experience creating robust and scalable web applications
+              With 4 years of experience creating robust and scalable web applications
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start animate-morph-in-delay-3">
