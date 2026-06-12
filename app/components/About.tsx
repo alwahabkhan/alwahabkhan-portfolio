@@ -91,13 +91,13 @@ export default function About() {
               frontends using React Js.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-              Experienced in database management with MongoDB and integrating APIs. Strong problem-solving abilities and a keen 
+              Experienced in database management with MongoDB, PostgreSQL and integrating APIs. Strong problem-solving abilities and a keen 
               eye for detail. Committed to delivering high-quality code and continuously learning new technologies to stay at the 
               forefront of Front-End and Back-End web development.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
               My expertise includes working with Docker for containerizing applications, deploying to AWS and Vercel using CI/CD 
-              pipelines, and utilizing various databases including PostgreSQL and MySQL for relational data management.
+              pipelines, and utilizing various databases including MySQL for relational data management.
             </p>
 
             <div className="grid grid-cols-3 gap-6">

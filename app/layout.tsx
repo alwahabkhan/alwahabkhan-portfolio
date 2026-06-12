@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "M Alwahab Ali Khan - Full Stack Developer Portfolio",
-  description: "Portfolio website of M Alwahab Ali Khan, a Full Stack Developer with 6 years of experience in building robust and scalable web applications",
+  description: "Portfolio website of M Alwahab Ali Khan, a Full Stack Developer with 4 years of experience in building robust and scalable web applications",
 };
 
 export default function RootLayout({

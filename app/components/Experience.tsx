@@ -28,7 +28,7 @@ export default function Experience() {
       title: 'Full Stack Developer',
       company: 'E-Strats',
       location: 'Pwd, Islambad',
-      period: 'Jan 2022 - Dec 2024',
+      period: 'Jan 2023 - Dec 2024',
       description: [
         'Led the end-to-end development of scalable web applications using the Full stack (MongoDB, Express.js, React.js, Node.js, Nest.js, Next.js)',
         'Built and integrated RESTful APIs for smooth frontend-backend communication',
@@ -44,7 +44,7 @@ export default function Experience() {
       title: 'MERN Stack Developer',
       company: 'Abt IT Innovation Ltd Pvt',
       location: 'I8, Islambad',
-      period: 'Jan 2020 - Dec 2021',
+      period: 'Jan 2021 - Dec 2022',
       description: [
         'Developed dynamic UI components in React.js, implementing responsive layouts with Bootstrap and Tailwind CSS',
         'Created and connected MongoDB databases and implemented backend logic using Express.js and Node.js',
