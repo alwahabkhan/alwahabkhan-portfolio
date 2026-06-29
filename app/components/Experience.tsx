@@ -1,13 +1,23 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { Work, CalendarToday, LocationOn } from '@mui/icons-material';
+import { Work, CalendarToday, LocationOn, ChevronLeft, ChevronRight } from '@mui/icons-material';
+
+type ExperienceItem = {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string[];
+};
 
 export default function Experience() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
+  const [activeSlide, setActiveSlide] = useState(0);
 
-  const experiences = [
+  const experiences: ExperienceItem[] = [
     {
       title: 'Sr. Full Stack Developer',
       company: 'Giga Group of Companies',
@@ -83,6 +93,111 @@ export default function Experience() {
     return () => observer.disconnect();
   }, [experiences.length]);
 
+  useEffect(() => {
+    const container = carouselRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const slides = Array.from(container.children) as HTMLElement[];
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+
+      let closest = 0;
+      let minDistance = Infinity;
+
+      slides.forEach((slide, index) => {
+        const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+        const distance = Math.abs(containerCenter - slideCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closest = index;
+        }
+      });
+
+      setActiveSlide(closest);
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSlide = (index: number) => {
+    const container = carouselRef.current;
+    if (!container) return;
+    const slide = container.children[index] as HTMLElement | undefined;
+    slide?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    setActiveSlide(index);
+  };
+
+  const ExperienceCard = ({
+    exp,
+    isMobile = false,
+    animate,
+  }: {
+    exp: ExperienceItem;
+    isMobile?: boolean;
+    animate?: boolean;
+  }) => (
+    <div
+      className={`bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg h-full ${
+        isMobile ? 'p-4 active:scale-[0.98] transition-transform' : 'p-6 hover:shadow-xl transition-shadow'
+      } ${
+        isMobile
+          ? ''
+          : animate
+            ? 'animate-experience-morph-from-left'
+            : 'opacity-0'
+      }`}
+    >
+      <div className={isMobile ? 'mb-3' : 'mb-4'}>
+        <h3
+          className={`font-bold text-gray-900 dark:text-white ${
+            isMobile ? 'text-lg mb-1.5' : 'text-2xl mb-2'
+          }`}
+        >
+          {exp.title}
+        </h3>
+        <div
+          className={`flex items-center text-blue-600 dark:text-blue-400 ${
+            isMobile ? 'mb-1 text-sm' : 'mb-2'
+          }`}
+        >
+          <Work className={`mr-1.5 ${isMobile ? '!text-base' : 'mr-2 text-lg'}`} />
+          <span className="font-semibold">{exp.company}</span>
+        </div>
+        <div
+          className={`flex items-center text-gray-600 dark:text-gray-400 ${
+            isMobile ? 'text-xs mb-1' : 'text-sm mb-2'
+          }`}
+        >
+          <LocationOn className="mr-1 !text-sm" />
+          <span>{exp.location}</span>
+        </div>
+        <div
+          className={`flex items-center text-gray-600 dark:text-gray-400 ${
+            isMobile ? 'text-xs' : 'text-sm'
+          }`}
+        >
+          <CalendarToday className="mr-1 !text-sm" />
+          <span>{exp.period}</span>
+        </div>
+      </div>
+
+      <ul className={isMobile ? 'space-y-1.5 mt-3' : 'space-y-2 mt-4'}>
+        {exp.description.map((item, itemIndex) => (
+          <li
+            key={itemIndex}
+            className={`text-gray-600 dark:text-gray-300 flex items-start ${
+              isMobile ? 'text-xs leading-relaxed' : ''
+            }`}
+          >
+            <span className="text-blue-600 dark:text-blue-400 mr-2 mt-0.5 shrink-0">▸</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
     <section id="experience" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
@@ -97,9 +212,52 @@ export default function Experience() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700 hidden md:block"></div>
+          {/* Mobile carousel */}
+          <div className="md:hidden">
+            <div
+              ref={carouselRef}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+            >
+              {experiences.map((exp, index) => (
+                <div
+                  key={index}
+                  className="w-[calc(100%-1.5rem)] shrink-0 snap-center snap-always"
+                >
+                  <ExperienceCard exp={exp} isMobile />
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-center gap-5 mt-6">
+              <button
+                type="button"
+                onClick={() => scrollToSlide(Math.max(0, activeSlide - 1))}
+                disabled={activeSlide === 0}
+                aria-label="Previous experience"
+                className="p-2.5 rounded-full bg-white dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 disabled:opacity-40 disabled:cursor-not-allowed active:bg-gray-50 dark:active:bg-gray-700 transition-colors"
+              >
+                <ChevronLeft fontSize="small" />
+              </button>
+
+              <span className="text-sm font-medium text-gray-600 dark:text-gray-400 tabular-nums min-w-[4rem] text-center">
+                {activeSlide + 1} / {experiences.length}
+              </span>
+
+              <button
+                type="button"
+                onClick={() => scrollToSlide(Math.min(experiences.length - 1, activeSlide + 1))}
+                disabled={activeSlide === experiences.length - 1}
+                aria-label="Next experience"
+                className="p-2.5 rounded-full bg-white dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 disabled:opacity-40 disabled:cursor-not-allowed active:bg-gray-50 dark:active:bg-gray-700 transition-colors"
+              >
+                <ChevronRight fontSize="small" />
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop timeline */}
+          <div className="relative hidden md:block">
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700"></div>
 
             {experiences.map((exp, index) => (
               <div
@@ -108,51 +266,15 @@ export default function Experience() {
                   cardRefs.current[index] = el;
                 }}
                 data-experience-index={index}
-                className="relative mb-12 md:mb-16"
+                className="relative mb-16"
               >
-                <div className="md:flex items-start">
-                  {/* Timeline Dot */}
-                  <div className="hidden md:flex absolute left-0 w-16 h-16 items-center justify-center">
+                <div className="flex items-start">
+                  <div className="absolute left-0 w-16 h-16 flex items-center justify-center">
                     <div className="w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-gray-900 z-10"></div>
                   </div>
 
-                  {/* Content */}
-                  <div
-                    className={`md:ml-24 bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow ${
-                      visibleCards[index] ? 'animate-experience-morph-from-left' : 'opacity-0'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                          {exp.title}
-                        </h3>
-                        <div className="flex items-center text-blue-600 dark:text-blue-400 mb-2">
-                          <Work className="mr-2 text-lg" />
-                          <span className="font-semibold">{exp.company}</span>
-                        </div>
-                        <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm mb-2">
-                          <LocationOn className="mr-1 text-sm" />
-                          <span>{exp.location}</span>
-                        </div>
-                        <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                          <CalendarToday className="mr-1 text-sm" />
-                          <span>{exp.period}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <ul className="space-y-2 mt-4">
-                      {exp.description.map((item, itemIndex) => (
-                        <li
-                          key={itemIndex}
-                          className="text-gray-600 dark:text-gray-300 flex items-start"
-                        >
-                          <span className="text-blue-600 dark:text-blue-400 mr-2 mt-1">▸</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="ml-24 w-full">
+                    <ExperienceCard exp={exp} animate={visibleCards[index]} />
                   </div>
                 </div>
               </div>
@@ -163,4 +285,3 @@ export default function Experience() {
     </section>
   );
 }
-
